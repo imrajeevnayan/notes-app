@@ -51,7 +51,7 @@ Update `src/main/resources/application.properties` if needed:
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/notesapp
 spring.datasource.username=postgres
-spring.datasource.password=postgres
+spring.datasource.password=123
 ```
 
 #### 3. Build and Run
