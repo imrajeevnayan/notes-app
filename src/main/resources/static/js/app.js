@@ -80,6 +80,33 @@ if (location.pathname === '/' || location.pathname.includes('index.html')) {
             }
         });
 
+        document.getElementById('registerFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const errorEl = document.getElementById('registerError');
+            errorEl.classList.add('hidden');
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+            const email = document.getElementById('regEmail').value;
+
+            try {
+                // Register
+                await API.post('/auth/register', { username, password, email }, true);
+
+                // Auto login or redirect to login? Let's redirect to login for now or auto-login.
+                // The prompt didn't specify, but UX is better if we auto-login or just switch to login view with success message.
+                // Let's switch to login view and pre-fill username.
+
+                alert('Registration successful! Please login.');
+                registerForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+                document.getElementById('loginUsername').value = username;
+
+            } catch (err) {
+                errorEl.textContent = err.message;
+                errorEl.classList.remove('hidden');
+            }
+        });
+
     });
 }
 
