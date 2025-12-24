@@ -47,59 +47,54 @@ CREATE DATABASE notesapp;
 
 #### 2. Configure Database
 
-Update `src/main/resources/application.properties` if needed:
+Update `backend/src/main/resources/application.properties` if needed:
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/notesapp
 spring.datasource.username=postgres
 spring.datasource.password=123
 ```
 
-#### 3. Build and Run
+#### 3. Build and Run Backend
 
 ```bash
-# Navigate to project directory
-cd "e:\Notes App"
+# Navigate to backend directory
+cd backend
 
-# Build the project
-mvn clean install
-
-# Run the application
-mvn spring-boot:run
+# Run the application using Maven Wrapper
+./mvnw.cmd spring-boot:run
+# OR build and run jar
+./mvnw.cmd package -DskipTests
+java -jar target/notesapp-0.0.1-SNAPSHOT.jar
 ```
 
-The application will start on `http://localhost:8080`
+The backend API will start on `http://localhost:8080`.
 
-#### 4. Access the Application
+#### 4. Run Frontend
 
-Open your browser and navigate to:
-```
-http://localhost:8080
-```
+Since the frontend is static:
+1. Navigate to the `frontend` folder.
+2. Open `index.html` in your web browser.
 
 ### 📁 Project Structure
 
 ```
 Notes App/
-├── src/
-│   ├── main/
-│   │   ├── java/com/notesapp/
-│   │   │   ├── controller/          # REST API Controllers
-│   │   │   ├── domain/entity/       # JPA Entities
-│   │   │   ├── dto/                 # Data Transfer Objects
-│   │   │   ├── repository/          # JPA Repositories
-│   │   │   ├── security/            # Security & JWT Configuration
-│   │   │   ├── service/             # Business Logic Services
-│   │   │   └── NotesApplication.java
-│   │   └── resources/
-│   │       ├── static/              # Frontend Files
-│   │       │   ├── css/
-│   │       │   ├── js/
-│   │       │   ├── index.html
-│   │       │   └── dashboard.html
-│   │       └── application.properties
-│   └── test/                        # Test Files
-├── uploads/                         # File Upload Directory (auto-created)
-├── pom.xml
+├── backend/                 # Spring Boot Backend
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/notesapp/
+│   │   │   └── resources/
+│   │   │       └── application.properties
+│   │   └── test/
+│   ├── uploads/             # File Upload Directory
+│   ├── mvnw
+│   └── pom.xml
+├── frontend/                # Static Frontend
+│   ├── css/
+│   ├── js/
+│   ├── img/
+│   ├── index.html
+│   └── dashboard.html
 └── README.md
 ```
 
@@ -173,14 +168,15 @@ Maximum file size: 10MB
 
 Run tests with:
 ```bash
-mvn test
+cd backend
+./mvnw.cmd test
 ```
 
 ### 🐛 Troubleshooting
 
 **Application won't start:**
 - Ensure PostgreSQL is running
-- Check database credentials in application.properties
+- Check database credentials in `backend/src/main/resources/application.properties`
 - Verify Java 17+ is installed
 
 **Can't upload files:**
