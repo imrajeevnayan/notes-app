@@ -1,0 +1,46 @@
+services:
+  backend:
+    build: ./backend
+    container_name: notes-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/notesapp
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - db
+    networks:
+      - notes-network
+
+  frontend:
+    build: ./frontend
+    container_name: notes-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - notes-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: notes-db
+    environment:
+      - POSTGRES_DB=notesapp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - notes-network
+
+networks:
+  notes-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
