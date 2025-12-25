@@ -13,6 +13,14 @@ A full-stack notes application built with **Spring Boot**, **PostgreSQL**, **JWT
 - 🔍 **Search** - Search through your notes
 - 📊 **Multiple Views** - Grid and list view options
 
+### 📸 Screenshots
+
+![Screenshot 1](screenshots/IntelliJ%20Snippet.png)
+![Screenshot 2](screenshots/IntelliJ%20Snippet%20(1).png)
+![Screenshot 3](screenshots/IntelliJ%20Snippet%20(2).png)
+![Screenshot 4](screenshots/IntelliJ%20Snippet%20(3).png)
+![Screenshot 5](screenshots/IntelliJ%20Snippet%20(4).png)
+
 ### 🛠️ Technology Stack
 
 **Backend:**
