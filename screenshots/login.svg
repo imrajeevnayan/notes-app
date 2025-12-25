@@ -1,0 +1,11 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f0f2f5"/>
+  <rect x="250" y="150" width="300" height="300" rx="10" fill="white" stroke="#ccc"/>
+  <text x="400" y="200" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">Notes App Login</text>
+  <rect x="280" y="240" width="240" height="40" rx="5" fill="#eee"/>
+  <text x="290" y="265" font-family="Arial" font-size="14" fill="#999">Email</text>
+  <rect x="280" y="300" width="240" height="40" rx="5" fill="#eee"/>
+  <text x="290" y="325" font-family="Arial" font-size="14" fill="#999">Password</text>
+  <rect x="280" y="360" width="240" height="40" rx="5" fill="#007bff"/>
+  <text x="400" y="385" font-family="Arial" font-size="16" text-anchor="middle" fill="white">Sign In</text>
+</svg>

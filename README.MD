@@ -1,118 +1,77 @@
-## 📝 Complete Notes Application
+# Notes App
 
-A full-stack notes application built with **Spring Boot**, **PostgreSQL**, **JWT Authentication**, and a **React (Vite) Frontend**.
+A full-stack notes application built with Spring Boot and React.
 
-### ✨ Features
+## 🚀 Features
 
-- 🔐 **User Authentication** - Register and login with JWT tokens
-- 📝 **Note Management** - Create, read, update, and delete notes
-- 📎 **File Attachments** - Upload and download files (PDF, images, documents)
-- 🔒 **Authorization** - Users can only access their own notes
-- 📱 **Responsive Design** - Works on desktop, tablet, and mobile (Tailwind CSS)
-- 🎨 **Modern UI** - Beautiful dark theme with smooth animations
-- 🔍 **Search** - Search through your notes
-- 📊 **Multiple Views** - Grid and list view options
+- **User Authentication**: Secure login and registration using JWT.
+- **Create & Manage Notes**: Create, edit, and delete notes easily.
+- **Search Functionality**: Quickly find notes by title or content.
+- **Responsive Design**: Optimized for desktop and mobile devices.
+- **Modern UI**: Built with React, Vite, and Tailwind CSS.
+- **Database Integration**: Persistent storage with PostgreSQL.
 
-### 📸 Screenshots
+## 🛠️ Tech Stack
 
-![Screenshot 1](screenshots/IntelliJ%20Snippet.png)
-![Screenshot 2](screenshots/IntelliJ%20Snippet%20(1).png)
-![Screenshot 3](screenshots/IntelliJ%20Snippet%20(2).png)
-![Screenshot 4](screenshots/IntelliJ%20Snippet%20(3).png)
-![Screenshot 5](screenshots/IntelliJ%20Snippet%20(4).png)
+- **Backend**: Java 25, Spring Boot 3, Spring Security, JPA/Hibernate
+- **Frontend**: React 18, Vite, Tailwind CSS
+- **Database**: PostgreSQL 15
+- **Containerization**: Docker & Docker Compose
 
-### 🛠️ Technology Stack
+## 📸 Screenshots
 
-**Backend:**
-- Spring Boot 3.2.0
-- Spring Security with JWT
-- Spring Data JPA
-- PostgreSQL
-- Maven
+| Login | Register | Dashboard |
+|:---:|:---:|:---:|
+| ![Login](screenshots/login.svg) | ![Register](screenshots/register.svg) | ![Dashboard](screenshots/dashboard.svg) |
 
-**Frontend:**
-- React 18
-- Vite
-- Tailwind CSS
-- Lucide React (Icons)
-- Axios
+## 🐳 Run with Docker (Recommended)
 
-**DevOps:**
-- Docker & Docker Compose
+The easiest way to run the application is using Docker Compose.
 
-### 📋 Prerequisites
-
-- Java 17 or higher
-- Node.js 18 or higher
-- PostgreSQL 12 or higher
-- Docker (optional)
-
-### 🚀 Getting Started
-
-You can run the application either locally or using Docker.
-
-#### Option 1: Run with Docker (Recommended)
-
-1.  Ensure Docker is installed and running.
-2.  Run the following command:
+1.  **Clone the repository** (if you haven't already).
+2.  **Run the application**:
     ```bash
     docker-compose up --build
     ```
-3.  Access the application:
+3.  **Access the app**:
     - Frontend: `http://localhost:5173`
-    - Backend: `http://localhost:8080`
+    - Backend API: `http://localhost:8080`
 
-#### Option 2: Run Locally
+## 🔧 Manual Setup
 
-**1. Database Setup**
-```bash
-psql -U postgres
-CREATE DATABASE notesapp;
-\q
-```
+If you prefer to run the services locally without Docker:
 
-**2. Backend Setup**
-Update `backend/src/main/resources/application.properties` with your DB credentials.
-```bash
-cd backend
-./mvnw.cmd spring-boot:run
-```
+### Backend
 
-**3. Frontend Setup**
-```bash
-cd frontend
-npm install
-npm run dev
-```
-The frontend will start on `http://localhost:5173`.
+1.  **Prerequisites**: Java 25 installed.
+2.  **Navigate to backend**:
+    ```bash
+    cd backend
+    ```
+3.  **Build**:
+    ```bash
+    ./mvnw clean package -DskipTests
+    ```
+4.  **Run**:
+    ```bash
+    java -jar target/notesapp-0.0.1-SNAPSHOT.jar
+    ```
+    The backend will start on port `8080`.
 
-### 📁 Project Structure
+### Frontend
 
-```
-Notes App/
-├── backend/                 # Spring Boot Backend
-│   ├── src/                 # Java Source Code
-│   ├── Dockerfile           # Backend Docker Image
-│   └── pom.xml
-├── frontend/                # React Frontend
-│   ├── src/                 # React Source Code
-│   ├── Dockerfile           # Frontend Docker Image
-│   ├── nginx.conf           # Nginx Config for Docker
-│   ├── package.json
-│   └── vite.config.js
-├── docker-compose.yml       # Docker Orchestration
-└── README.md
-```
-
-### 🔒 Security Features
-
-- Passwords hashed with BCrypt
-- JWT token-based authentication
-- Token expiration (24 hours)
-- CORS configuration
-- Authorization checks on all endpoints
-- File type and size validation
-
-### 👨‍💻 Author
-
-Built with ❤️ using Spring Boot and React.
+1.  **Prerequisites**: Node.js & npm installed.
+2.  **Navigate to frontend**:
+    ```bash
+    cd frontend
+    ```
+3.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+4.  **Run development server**:
+    ```bash
+    npm run dev
+    ```
+    The frontend will start on `http://localhost:5173`.
+    *Note: The `vite.config.js` is configured to proxy API requests to `localhost:8080`.*
