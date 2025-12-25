@@ -1,26 +1,32 @@
+version: '3'
 services:
   backend:
     build: ./backend
     container_name: notes-backend
     ports:
-      - "8080:8080"
+      - "8080:8080"  # Expose port for backend
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/notesapp
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/notesapp  # Database connection
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
-      - db
+      - db  # Ensure the db service is started before backend
     networks:
       - notes-network
+    healthcheck:  # Add healthcheck to wait until backend is up and running
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]  # Spring Boot health check URL
+      interval: 30s
+      retries: 5
+      start_period: 10s
 
   frontend:
     build: ./frontend
     container_name: notes-frontend
     ports:
-      - "5173:80"
+      - "5173:80"  # Expose port for frontend (usually 80 inside container)
     depends_on:
-      - backend
+      - backend  # Wait until backend is ready
     networks:
       - notes-network
 
@@ -28,19 +34,24 @@ services:
     image: postgres:18-alpine
     container_name: notes-db
     environment:
-      - POSTGRES_DB=notesapp
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=notesapp  # Database name
+      - POSTGRES_USER=postgres  # Database username
+      - POSTGRES_PASSWORD=123  # Database password
     ports:
-      - "5432:5432"
+      - "5432:5432"  # Expose PostgreSQL default port
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data  # Persistent volume for database data
     networks:
       - notes-network
+    healthcheck:  # Healthcheck for the database service
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 30s
+      retries: 5
+      start_period: 10s
 
 networks:
   notes-network:
-    driver: bridge
+    driver: bridge  # Create a bridge network for all services to communicate
 
 volumes:
-  postgres_data:
+  postgres_data:  # Persistent volume for PostgreSQL data
