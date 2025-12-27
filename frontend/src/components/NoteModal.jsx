@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { X, Upload, Trash2, File as FileIcon } from 'lucide-react';
 import api from '../services/api';
+import FileAttachment from './FileAttachment';
 
 export default function NoteModal({ isOpen, onClose, onSave, note = null }) {
     const [title, setTitle] = useState('');
@@ -143,17 +144,17 @@ export default function NoteModal({ isOpen, onClose, onSave, note = null }) {
 
                         {/* Existing Files */}
                         {existingFiles.length > 0 && (
-                            <div className="mb-2 space-y-2">
-                                <p className="text-xs text-gray-500 uppercase tracking-wider">Existing</p>
-                                {existingFiles.map((file) => (
-                                    <div key={file.id} className="flex justify-between items-center p-2 bg-blue-50 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded text-sm dark:text-gray-200">
-                                        <div className="flex items-center gap-2 truncate max-w-[80%]">
-                                            <FileIcon size={14} className="text-blue-500" />
-                                            <span className="truncate">{file.fileName}</span>
-                                        </div>
-                                        <button type="button" onClick={() => deleteExistingFile(file.id)} className="text-red-500 hover:text-red-700"><Trash2 size={16} /></button>
-                                    </div>
-                                ))}
+                            <div className="mb-4">
+                                <label className="text-xs text-gray-500 uppercase tracking-wider block mb-2">Attached Files</label>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                    {existingFiles.map((file) => (
+                                        <FileAttachment
+                                            key={file.id}
+                                            file={file}
+                                            onDelete={deleteExistingFile}
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         )}
 
