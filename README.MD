@@ -1,4 +1,5 @@
 # 📝 Awesome Notes App
+![Java CI/CD](https://github.com/imrajeevnayan/notes-app/actions/workflows/ci.yml/badge.svg)
 
 Welcome to the **Awesome Notes App**! This is a modern, full-stack application designed to help you organize your thoughts, tasks, and ideas securely and efficiently. Built with the robust **Spring Boot** framework on the backend and a sleek **React** interface on the frontend, it’s the perfect playground for learning full-stack development or managing your daily notes.
 
@@ -8,15 +9,16 @@ Welcome to the **Awesome Notes App**! This is a modern, full-stack application d
 
 1.  [Features](#-features)
 2.  [Tech Stack](#-tech-stack)
-3.  [Prerequisites](#-prerequisites)
-4.  [🚀 Quick Start (Docker)](#-run-with-docker-recommended)
-5.  [🔧 Manual Developer Setup](#-manual-setup-for-developers)
+3.  [CI/CD Pipeline](#-cicd-pipeline)
+4.  [Prerequisites](#-prerequisites)
+5.  [🚀 Quick Start (Docker)](#-run-with-docker-recommended)
+6.  [🔧 Manual Developer Setup](#-manual-setup-for-developers)
     *   [1. Database Setup](#1-database-setup)
     *   [2. Backend Setup](#2-backend-setup)
     *   [3. Frontend Setup](#3-frontend-setup)
-6.  [📖 usage Guide](#-usage-guide)
-7.  [📂 Project Structure](#-project-structure)
-8.  [❓ Troubleshooting](#-troubleshooting)
+7.  [📖 Usage Guide](#-usage-guide)
+8.  [📂 Project Structure](#-project-structure)
+9.  [❓ Troubleshooting](#-troubleshooting)
 
 ---
 
@@ -50,6 +52,25 @@ Welcome to the **Awesome Notes App**! This is a modern, full-stack application d
 **DevOps (The Delivery)**
 *   **Docker**: Containerization
 *   **Docker Compose**: Multi-container orchestration
+*   **GitHub Actions**: CI/CD Pipeline for automated testing and building
+
+---
+
+## 🔄 CI/CD Pipeline
+
+This project uses **GitHub Actions** for Continuous Integration and Continuous Deployment. Every push or pull request to the `main` branch triggers an automated workflow that ensures code quality and build stability.
+
+### Workflow Steps:
+1.  **Backend Build**:
+    *   Sets up **Java 25**.
+    *   Builds the Spring Boot application using Maven.
+2.  **Frontend Build**:
+    *   Sets up **Node.js 22**.
+    *   Installs dependencies and builds the React application using Vite.
+3.  **Docker Validation**:
+    *   Verifies that the `docker-compose build` command completes successfully to ensure containerization works as expected.
+
+You can view the status of the latest build by clicking the badge at the top of this README.
 
 ---
 
